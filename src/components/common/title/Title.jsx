@@ -37,5 +37,6 @@ const StDatePickerContainer = styled.div`
     width: 100px;
     border: none;
     background-color: #f6f7f8;
+    color: #3a474e;
   }
 `;
