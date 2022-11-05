@@ -3,22 +3,25 @@ import GlobalStyle from './styles/GlobalStyle';
 import Router from './Router';
 import Sidebar from './components/common/Sidebar';
 import Header from './components/common/Header';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <StMainContainer>
-        <StMain>
-          <StLeftContainer>
-            <Sidebar />
-          </StLeftContainer>
-          <StRightContainer>
-            <Header />
-            <Router />
-          </StRightContainer>
-        </StMain>
-      </StMainContainer>
+      <BrowserRouter>
+        <StMainContainer>
+          <StMain>
+            <StLeftContainer>
+              <Sidebar />
+            </StLeftContainer>
+            <StRightContainer>
+              <Header />
+              <Router />
+            </StRightContainer>
+          </StMain>
+        </StMainContainer>
+      </BrowserRouter>
     </>
   );
 }

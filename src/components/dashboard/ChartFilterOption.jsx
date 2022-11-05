@@ -6,9 +6,7 @@ const ChartFilterOption = () => {
     <StFilterContainer>
       <StChartColorCircle />
       <StFilter>
-        <option value="ROAS">
-          <span>ROAS</span>
-        </option>
+        <option value="ROAS">ROAS</option>
         <option value="ROAS">광고비</option>
         <option value="ROAS">노출 수</option>
         <option value="ROAS">클릭 수</option>
