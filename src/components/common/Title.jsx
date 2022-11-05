@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Title = ({ text }) => {
   return (
     <StTitleContainer>
-      <StTitle>{text}</StTitle>
+      <StTitle>대시보드</StTitle>
     </StTitleContainer>
   );
 };
@@ -19,5 +19,7 @@ const StTitleContainer = styled.div`
 `;
 
 const StTitle = styled.span`
+  color: #3a474e;
   font-size: 26px;
+  font-weight: 700;
 `;
