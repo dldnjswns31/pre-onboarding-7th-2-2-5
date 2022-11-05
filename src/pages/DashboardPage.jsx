@@ -1,5 +1,5 @@
 import React from 'react';
-import Title from '../components/common/Title';
+import Title from '../components/common/title/Title';
 import Dashboard from '../components/dashboard/Dashboard';
 
 const DashboardPage = () => {
