@@ -24,6 +24,9 @@ const Div = styled.div`
   padding: 0 1rem;
   border: 1px solid #d1d8dc;
   border-radius: 10px;
+  z-index: 12;
+  cursor: pointer;
+
   p {
     padding-top: 4px;
     margin: 0 5px;
@@ -34,9 +37,6 @@ const Div = styled.div`
     border-radius: 10px;
     top: 100%;
     left: 0%;
-  }
-  p:hover {
-    font-weight: bold;
   }
   span {
     position: absolute;
