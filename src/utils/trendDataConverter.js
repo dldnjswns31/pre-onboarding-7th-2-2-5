@@ -10,7 +10,6 @@ const convert = (start, ended, keyword) => {
   // getDayDiff는 날짜의 차이를 반환하기에 때문에 일수를 구하려면 1을 더해줘야 된다.
   const dataNum = getDayDiff(start, ended) + 1;
   const [prevStartDate, prevEndedDate] = getPrevDayRange(start, ended, dataNum);
-
   let [cur, prev] = [0, 0];
   let increment;
   dailyData.forEach((data) => {

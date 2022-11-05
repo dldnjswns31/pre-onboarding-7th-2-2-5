@@ -9,7 +9,7 @@ export const useStartDate = () => useContext(StartDateContext);
 export const useEndedDate = () => useContext(EndedDateContext);
 
 export const StartDateProvider = ({ children }) => {
-  const [startDate, setStartDate] = useState(new Date(new Date('2022-04-20').getTime() - 604800000));
+  const [startDate, setStartDate] = useState(new Date(new Date('2022-04-20').getTime() - 1000 * 60 * 60 * 24 * 6));
 
   const changeStartDate = (date) => {
     setStartDate(new Date(date));

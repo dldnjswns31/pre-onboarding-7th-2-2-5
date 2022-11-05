@@ -20,6 +20,7 @@ const RangeDatePicker = () => {
         startDate={startDate}
         endDate={endedDate}
         minDate={new Date('2022-02-01')}
+        maxDate={new Date(new Date('2022-04-20').getTime() - 1000 * 60 * 60 * 24 * 6)}
         className="datePicker"
       />
       <StTilde> ~ </StTilde>
