@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import GlobalStyle from './styles/GlobalStyle';
 import Router from './Router';
-import Sidebar from './components/common/Sidebar';
+import Sidebar from './components/common/sidebar/Sidebar';
 import Header from './components/common/Header';
 import { BrowserRouter } from 'react-router-dom';
 
