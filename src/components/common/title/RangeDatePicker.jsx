@@ -18,6 +18,7 @@ const RangeDatePicker = () => {
         startDate={startDate}
         endDate={endDate}
         minDate={new Date('2022-02-01')}
+        className="datePicker"
       />
       <StTilde> ~ </StTilde>
       <DatePicker
@@ -30,6 +31,7 @@ const RangeDatePicker = () => {
         endDate={endDate}
         minDate={startDate}
         maxDate={new Date('2022-04-20')}
+        className="datePicker"
       />
     </>
   );

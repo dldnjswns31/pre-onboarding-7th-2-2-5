@@ -32,4 +32,10 @@ const StTitle = styled.span`
 const StDatePickerContainer = styled.div`
   display: flex;
   align-items: center;
+
+  .datePicker {
+    width: 100px;
+    border: none;
+    background-color: #f6f7f8;
+  }
 `;
