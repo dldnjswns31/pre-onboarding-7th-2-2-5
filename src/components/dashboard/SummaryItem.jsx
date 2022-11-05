@@ -1,14 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const SummaryItem = () => {
+const SummaryItem = ({ text, data }) => {
   return (
     <StContainer>
       <StTitleAndIncrement>
-        <StTitle>ROAS</StTitle>
+        <StTitle>{text}</StTitle>
         <StIncrement>
-          <StValue>697%</StValue>
-          <StPercentage>18%</StPercentage>
+          <StValue>{data?.cur}</StValue>
+          <StPercentage>
+            <span>{data?.increment === 'increase' ? '증가' : '감소'} </span>
+            {data?.diff}
+          </StPercentage>
         </StIncrement>
       </StTitleAndIncrement>
     </StContainer>
