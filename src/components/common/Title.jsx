@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Title = ({ text }) => {
   return (
     <StTitleContainer>
-      <StTitle>대시보드</StTitle>
+      <StTitle>{text}</StTitle>
     </StTitleContainer>
   );
 };
