@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import ChartFilter from './ChartFilter';
 import Summary from './Summary';
 
 const Dashboard = () => {
@@ -8,6 +9,8 @@ const Dashboard = () => {
       <StTitle>통합 광고 현황</StTitle>
       <StDashboardContainer>
         <Summary />
+        <ChartFilter />
+        <StChartContainer />
       </StDashboardContainer>
     </StContainer>
   );
@@ -32,4 +35,12 @@ const StDashboardContainer = styled.div`
   padding: 40px;
   background-color: #ffffff;
   border-radius: 20px;
+`;
+
+const StChartContainer = styled.div`
+  display: inline-block;
+  margin-top: 40px;
+  width: 100%;
+  height: 240px;
+  background-color: #85da47;
 `;

@@ -22,5 +22,4 @@ const StContainer = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   width: 100%;
-  margin-bottom: 40px;
 `;
