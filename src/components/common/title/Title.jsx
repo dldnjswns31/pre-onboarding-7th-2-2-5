@@ -6,9 +6,11 @@ const Title = ({ text }) => {
   return (
     <StTitleContainer>
       <StTitle>{text}</StTitle>
-      <StDatePickerContainer>
-        <RangeDatePicker />
-      </StDatePickerContainer>
+      {text === '대시보드' && (
+        <StDatePickerContainer>
+          <RangeDatePicker />
+        </StDatePickerContainer>
+      )}
     </StTitleContainer>
   );
 };
