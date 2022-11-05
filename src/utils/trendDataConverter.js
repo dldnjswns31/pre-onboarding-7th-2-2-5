@@ -32,41 +32,44 @@ const convert = (start, ended, keyword) => {
   };
 };
 
-export const dataConverter = {
-  getRoas: (start, ended) => {
-    const convertData = convert(start, ended, 'roas');
+const returnConvert = (start, ended, keyword) => {
+  if (keyword === 'roas') {
+    const convertData = convert(start, ended, keyword);
     convertData.cur = convertData.cur.toLocaleString('ko-KR') + '%';
     convertData.diff = convertData.diff.toLocaleString('ko-KR') + '%';
     return convertData;
+  } else if (keyword === 'cost' || keyword === 'convValue') {
+    const convertData = convert(start, ended, keyword);
+    convertData.cur = convertData.cur.toLocaleString('ko-KR') + '원';
+    convertData.diff = convertData.diff.toLocaleString('ko-KR') + '원';
+    return convertData;
+  } else if (keyword === 'imp' || keyword === 'conv' || keyword === 'click') {
+    const convertData = convert(start, ended, keyword);
+    convertData.cur = convertData.cur.toLocaleString('ko-KR') + '회';
+    convertData.diff = convertData.diff.toLocaleString('ko-KR') + '회';
+    return convertData;
+  } else {
+    throw new Error('data convert error');
+  }
+};
+
+export const dataConverter = {
+  getRoas: (start, ended) => {
+    return returnConvert(start, ended, 'roas');
   },
   getCost: (start, ended) => {
-    const convertData = convert(start, ended, 'cost');
-    convertData.cur = convertData.cur.toLocaleString('ko-KR') + '원';
-    convertData.diff = convertData.diff.toLocaleString('ko-KR') + '원';
-    return convertData;
+    return returnConvert(start, ended, 'cost');
   },
   getImp: (start, ended) => {
-    const convertData = convert(start, ended, 'imp');
-    convertData.cur = convertData.cur.toLocaleString('ko-KR') + '회';
-    convertData.diff = convertData.diff.toLocaleString('ko-KR') + '회';
-    return convertData;
+    return returnConvert(start, ended, 'imp');
   },
   getClick: (start, ended) => {
-    const convertData = convert(start, ended, 'click');
-    convertData.cur = convertData.cur.toLocaleString('ko-KR') + '회';
-    convertData.diff = convertData.diff.toLocaleString('ko-KR') + '회';
-    return convertData;
+    return returnConvert(start, ended, 'click');
   },
   getConv: (start, ended) => {
-    const convertData = convert(start, ended, 'conv');
-    convertData.cur = convertData.cur.toLocaleString('ko-KR') + '회';
-    convertData.diff = convertData.diff.toLocaleString('ko-KR') + '회';
-    return convertData;
+    return returnConvert(start, ended, 'conv');
   },
   getConvValue: (start, ended) => {
-    const convertData = convert(start, ended, 'convValue');
-    convertData.cur = convertData.cur.toLocaleString('ko-KR') + '원';
-    convertData.diff = convertData.diff.toLocaleString('ko-KR') + '원';
-    return convertData;
+    return returnConvert(start, ended, 'convValue');
   },
 };

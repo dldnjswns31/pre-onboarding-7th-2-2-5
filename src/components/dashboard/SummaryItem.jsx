@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import Bear from './Bear';
+import Bull from './Bull';
 
 const SummaryItem = ({ text, data }) => {
   return (
@@ -9,8 +11,8 @@ const SummaryItem = ({ text, data }) => {
         <StIncrement>
           <StValue>{data?.cur}</StValue>
           <StPercentage>
-            <span>{data?.increment === 'increase' ? '증가' : '감소'} </span>
-            {data?.diff}
+            {data?.increment === 'increase' ? <Bull /> : <Bear />}
+            <span>{data?.diff}</span>
           </StPercentage>
         </StIncrement>
       </StTitleAndIncrement>
@@ -59,6 +61,8 @@ const StValue = styled.span`
 `;
 
 const StPercentage = styled.span`
+  display: flex;
+  align-items: center;
   color: #94a2ad;
   font-size: 12px;
   font-weight: 500;
