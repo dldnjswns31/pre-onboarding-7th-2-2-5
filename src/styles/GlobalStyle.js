@@ -53,6 +53,10 @@ table {
 button {
   cursor: pointer;
 }
+:root{
+  --color-primary: #586CF5;
+  --color-lightgrey: #EDEFF1
+}
 `;
 
 export default GlobalStyle;
