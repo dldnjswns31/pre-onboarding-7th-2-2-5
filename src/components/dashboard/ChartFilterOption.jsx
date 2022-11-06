@@ -27,6 +27,16 @@ const ChartFilterOption = ({ first }) => {
     }
   }, [firstOption]);
 
+  useEffect(() => {
+    if (first) {
+      setOptions(
+        Object.keys(CATEGORY_NAME).filter((category) => {
+          if (category !== secondOption) return category;
+        })
+      );
+    }
+  }, [secondOption]);
+
   const handleChangeFilter = (e) => {
     if (first) {
       changeFirstOption(e.target.value);
