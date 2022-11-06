@@ -54,10 +54,8 @@ const returnConvert = (start, ended, keyword) => {
     if (convertData.cur - prevRoas > 0) convertData.increment = 'increase';
     else convertData.increment = 'decrease';
     convertData.diff = Math.abs(convertData.cur - prevRoas);
-
     convertData.cur = convertData.cur.toLocaleString('ko-KR') + '%';
     convertData.diff = convertData.diff.toLocaleString('ko-KR') + '%';
-
     return convertData;
   } else if (keyword === 'conv' || keyword === 'click') {
     const convertData = convert(start, ended, keyword);
