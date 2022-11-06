@@ -6,7 +6,7 @@ import AdminLayout from '../components/admin/AdminLayout';
 import useToggle from '../hooks/useToggle';
 
 const AdAdminPage = () => {
-  const [filter, setFilter] = useState();
+  const [filter, setFilter] = useState(AD_STATUS.total);
   const [selectMenu, setSelectMenu] = useState('전체 광고');
   const [menuIsShow, menuShowHandler] = useToggle();
 

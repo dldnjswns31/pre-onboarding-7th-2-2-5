@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import AdItem from './AdItem';
-import ad_list from '../../db/ad_list.json';
+import { useAdData, useAdFilter } from '../../context/adDataContext';
+import { useEffect } from 'react';
 
 const AdItemList = ({ filter }) => {
-  const { ads } = ad_list;
+  const ads = useAdData();
   const filteredAdList = ads.filter((ad) => (filter !== undefined ? ad.status === filter : ad));
 
   return (
