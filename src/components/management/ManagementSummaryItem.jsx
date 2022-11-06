@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { useAdData, useAdEdit } from '../../context/adDataContext';
 
 const ManagementSummaryItem = () => {
+  const adData = useAdData();
+  const edit = useAdEdit();
+  console.log('adData', adData);
+  useEffect(() => {
+    edit({ title: 'jae' });
+  }, []);
+
   return (
     <StContainer>
       <StItemTitle>웹광고</StItemTitle>
