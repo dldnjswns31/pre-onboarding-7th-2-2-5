@@ -24,8 +24,7 @@ const Div = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: fit-content;
-  padding: 0 1rem;
+  width: 130px;
   border: 1px solid #d1d8dc;
   border-radius: 10px;
   cursor: pointer;
@@ -33,8 +32,8 @@ const Div = styled.div`
   label {
     list-style: none;
     line-height: 40px;
-    padding: 0 1rem;
     width: 100%;
+    padding-left: 15px;
     border-radius: 10px;
     top: 100%;
     left: 0%;
