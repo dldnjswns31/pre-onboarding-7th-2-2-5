@@ -6,8 +6,11 @@ import useToggle from '../../hooks/useToggle';
 import { useState } from 'react';
 import { getValueByKey, budgetConverter, dateConverter, costFormat, roasCalc, getToday } from '../../utils/functions';
 import { AD_ITEM_DESC, AD_STATUS, AD_SORT } from '../../utils/constants';
+import { useAdEdit } from '../../context/adDataContext';
 
-const AdItem = ({ ad }) => {
+const AdItem = ({ ad, itemId }) => {
+  const setAdData = useAdEdit();
+
   const { adType, report, title } = ad;
   const { cost, convValue } = report;
   const [editMode, editModeHandler] = useToggle();
@@ -15,9 +18,15 @@ const AdItem = ({ ad }) => {
 
   const formHandler = (e) => {
     const { name, value } = e.target;
-    if (value === 'ended') setForm({ ...form, [name]: value, endDate: getToday() });
-    else if (value === 'active') setForm({ ...form, [name]: value, endDate: null });
-    else setForm({ ...form, [name]: value });
+    if (value === 'ended')
+      setAdData((prev) =>
+        prev.map((ad) => (ad.id === parseInt(itemId) ? { ...form, [name]: value, endDate: getToday() } : ad))
+      );
+    else if (value === 'active')
+      setAdData((prev) =>
+        prev.map((ad) => (ad.id === parseInt(itemId) ? { ...form, [name]: value, endDate: null } : ad))
+      );
+    else setAdData((prev) => prev.map((ad) => (ad.id === parseInt(itemId) ? { ...form, [name]: value } : ad)));
   };
 
   return !editMode ? (
@@ -25,9 +34,9 @@ const AdItem = ({ ad }) => {
       <Title>
         {getValueByKey(AD_SORT, adType)}_{title}
       </Title>
-      <Desc isFirst title={AD_ITEM_DESC[0]} desc={getValueByKey(AD_STATUS, form.status)} />
-      <Desc title={AD_ITEM_DESC[1]} desc={dateConverter(form.startDate, form.endDate)} />
-      <Desc title={AD_ITEM_DESC[2]} desc={budgetConverter(form.budget)} />
+      <Desc isFirst title={AD_ITEM_DESC[0]} desc={getValueByKey(AD_STATUS, ad.status)} />
+      <Desc title={AD_ITEM_DESC[1]} desc={dateConverter(ad.startDate, ad.endDate)} />
+      <Desc title={AD_ITEM_DESC[2]} desc={budgetConverter(ad.budget)} />
       <Desc title={AD_ITEM_DESC[3]} desc={`${roasCalc(convValue, cost)}%`} />
       <Desc title={AD_ITEM_DESC[4]} desc={costFormat(convValue)} />
       <Desc title={AD_ITEM_DESC[5]} desc={costFormat(cost)} />
@@ -45,7 +54,7 @@ const AdItem = ({ ad }) => {
         formHandler={formHandler}
         editMode={editMode}
         title={AD_ITEM_DESC[1]}
-        desc={form.startDate}
+        desc={ad.startDate}
       />
       <Desc
         type="number"
@@ -53,7 +62,7 @@ const AdItem = ({ ad }) => {
         formHandler={formHandler}
         editMode={editMode}
         title={AD_ITEM_DESC[2]}
-        desc={form.budget}
+        desc={ad.budget}
       />
       <Desc title={AD_ITEM_DESC[3]} desc={`${roasCalc(convValue, cost)}%`} />
       <Desc title={AD_ITEM_DESC[4]} desc={costFormat(convValue)} />
@@ -67,5 +76,5 @@ export default AdItem;
 
 const Title = styled.div`
   font-size: 18px;
-  margin: 1.5rem 10px 1.8rem 10px;
+  margin: 1.2rem 10px 1.2rem 10px;
 `;
