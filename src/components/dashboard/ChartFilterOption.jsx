@@ -9,7 +9,6 @@ const ChartFilterOption = ({ first }) => {
   const { firstOption, changeFirstOption } = useFirstOption();
   const { secondOption, changeSecondOption } = useSecondOption();
   const [options, setOptions] = useState([]);
-  console.log(firstOption, secondOption);
 
   useEffect(() => {
     if (first) {
