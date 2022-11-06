@@ -18,16 +18,14 @@ const Summary = () => {
     const click = dataConverter.getClick(startDate, endedDate);
     const conv = dataConverter.getConv(startDate, endedDate);
     const convValue = dataConverter.getConvValue(startDate, endedDate);
-    setTimeout(() => {
-      setIncrementData({
-        roas,
-        cost,
-        imp,
-        click,
-        conv,
-        convValue,
-      });
-    }, 500);
+    setIncrementData({
+      roas,
+      cost,
+      imp,
+      click,
+      conv,
+      convValue,
+    });
   }, [startDate, endedDate]);
 
   return (

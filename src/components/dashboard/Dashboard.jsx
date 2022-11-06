@@ -1,17 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import Loading from '../common/Loading';
 import Chart from './Chart';
 import ChartFilter from './ChartFilter';
 import Summary from './Summary';
 
 const Dashboard = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+  }, []);
   return (
     <StContainer>
       <StTitle>통합 광고 현황</StTitle>
       <StDashboardContainer>
-        <Summary />
-        <ChartFilter />
-        <Chart />
+        {!isLoading ? (
+          <>
+            <Summary />
+            <ChartFilter />
+            <Chart />
+          </>
+        ) : (
+          <Loading />
+        )}
       </StDashboardContainer>
     </StContainer>
   );
@@ -36,12 +50,4 @@ const StDashboardContainer = styled.div`
   padding: 40px;
   background-color: #ffffff;
   border-radius: 20px;
-`;
-
-const StChartContainer = styled.div`
-  display: inline-block;
-  margin-top: 40px;
-  width: 100%;
-  height: 240px;
-  background-color: #85da47;
 `;

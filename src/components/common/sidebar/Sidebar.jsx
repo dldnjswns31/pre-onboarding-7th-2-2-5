@@ -55,7 +55,7 @@ const StMenuContainer = styled.div`
 `;
 
 const StDivContainer = styled.div`
-  margin-top: 40px;
+  margin: 40px 0;
   padding: 0 20px;
   div {
     margin-bottom: 10px;
