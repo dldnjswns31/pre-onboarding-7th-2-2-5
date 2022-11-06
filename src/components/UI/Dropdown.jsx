@@ -61,7 +61,7 @@ const Ul = styled.ul`
   left: 0%;
   width: 100%;
   background-color: white;
-  display: ${({ menuIsShow }) => (menuIsShow ? 'none' : 'hidden')};
+  display: ${({ menuIsShow }) => (menuIsShow ? 'hidden' : 'none')};
 `;
 
 const Li = styled.li`

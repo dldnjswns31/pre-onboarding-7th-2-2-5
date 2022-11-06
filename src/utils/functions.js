@@ -17,6 +17,15 @@ const dateConverter = (startDate, endDate) => {
   return !endDate ? startDate.slice(0, 10) : startDate.slice(0, 10) + ` (` + endDate.slice(0, 10) + `)`;
 };
 
+const getToday = () => {
+  const date = new Date();
+  const year = date.getFullYear();
+  const month = ('0' + (1 + date.getMonth())).slice(-2);
+  const day = ('0' + date.getDate()).slice(-2);
+
+  return year + '-' + month + '-' + day;
+};
+
 const costFormat = (cost) => {
   const costLength = String(cost).length;
   const newCost = String(cost).slice(0, costLength - 4);
@@ -27,4 +36,4 @@ const roasCalc = (convValue, cost) => {
   return parseInt((convValue / cost) * 100);
 };
 
-export { getValueByKey, budgetConverter, dateConverter, costFormat, roasCalc, getKeyByValue };
+export { getValueByKey, budgetConverter, dateConverter, getToday, costFormat, roasCalc, getKeyByValue };

@@ -1,10 +1,20 @@
 import styled from 'styled-components';
 
-const Desc = ({ name, desc, type, ...props }) => {
-  return (
+const Desc = ({ title, name, desc, type, formHandler, ...props }) => {
+  return type === 'select' ? (
     <Div {...props}>
-      <Title>{name}</Title>
-      {type ? <Input type={type} defaultValue={desc} /> : <div>{desc}</div>}
+      <Title>{title}</Title>
+      <label>
+        <Input onChange={formHandler} name="status" type="radio" value="active" /> 진행중
+      </label>
+      <label>
+        <Input onChange={formHandler} name="status" type="radio" value="ended" /> 중단됨
+      </label>
+    </Div>
+  ) : (
+    <Div {...props}>
+      <Title>{title}</Title>
+      {type ? <Input onChange={formHandler} name={name} type={type} defaultValue={desc} /> : <div>{desc}</div>}
     </Div>
   );
 };
@@ -20,6 +30,10 @@ const Div = styled.div`
   border-top: ${({ isFirst }) => (isFirst ? '1px solid var(--color-lightgrey)' : 'none')};
   border-bottom: 1px solid var(--color-lightgrey);
   padding: ${({ editMode }) => (!editMode ? '1rem 0' : '0.85rem 0')};
+
+  label {
+    margin-right: 15px;
+  }
 `;
 
 const Title = styled.div`
