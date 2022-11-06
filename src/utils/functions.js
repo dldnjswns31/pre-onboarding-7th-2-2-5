@@ -2,6 +2,10 @@ const getValueByKey = (obj, Key) => {
   return obj[Key];
 };
 
+function getKeyByValue(obj, value) {
+  return Object.keys(obj).find((key) => obj[key] === value);
+}
+
 const budgetConverter = (budget) => {
   const newBudget = String(budget);
   if (budget < 100000) return newBudget.slice(0, 2) + '천원';
@@ -19,4 +23,8 @@ const costFormat = (cost) => {
   return Number(newCost).toLocaleString() + '만원';
 };
 
-export { getValueByKey, budgetConverter, dateConverter, costFormat };
+const roasCalc = (convValue, cost) => {
+  return parseInt((convValue / cost) * 100);
+};
+
+export { getValueByKey, budgetConverter, dateConverter, costFormat, roasCalc, getKeyByValue };

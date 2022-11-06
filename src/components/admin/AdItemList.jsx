@@ -2,12 +2,13 @@ import styled from 'styled-components';
 import AdItem from './AdItem';
 import ad_list from '../../db/ad_list.json';
 
-const AdItemList = () => {
+const AdItemList = ({ filter }) => {
   const { ads } = ad_list;
+  const filteredAdList = ads.filter((ad) => (filter !== undefined ? ad.status === filter : ad));
 
   return (
     <Body>
-      {ads.map((ad) => (
+      {filteredAdList.map((ad) => (
         <AdItem key={ad.id} ad={ad} />
       ))}
     </Body>

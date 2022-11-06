@@ -13,7 +13,7 @@ const Btn = styled.button`
   font-weight: 700;
   height: fit-content;
   margin: ${({ margin }) => margin || ''};
-  border: ${({ create }) => (create ? 'none' : '1px solid lightgray')};
-  color: ${({ create }) => (create ? 'white' : 'black')};
-  background-color: ${({ create }) => (create ? 'var(--color-primary)' : 'transparent')};
+  border: ${({ primary }) => (primary ? 'none' : '1px solid lightgray')};
+  color: ${({ primary }) => (primary ? 'white' : 'black')};
+  background-color: ${({ primary }) => (primary ? 'var(--color-primary)' : 'transparent')};
 `;

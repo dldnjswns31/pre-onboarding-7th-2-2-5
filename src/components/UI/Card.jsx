@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-const Card = ({ children }) => {
-  return <Container>{children}</Container>;
+const Card = ({ children, ...props }) => {
+  return <Container {...props}>{children}</Container>;
 };
 
 export default Card;
@@ -11,6 +11,6 @@ const Container = styled.div`
   height: 420px;
   padding: 0.5rem;
   margin-bottom: 20px;
-  border: 1px solid lightgray;
+  border: ${({ primary }) => (primary ? '1px solid var(--color-primary)' : '1px solid lightgray')};
   border-radius: 10px;
 `;

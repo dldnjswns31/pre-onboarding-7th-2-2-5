@@ -3,12 +3,18 @@ import Dropdown from '../UI/Dropdown';
 import Button from '../UI/Button';
 import { AD_ADMIN_DROPDOWN_OPTIONS } from '../../utils/constants';
 
-const AdminLayout = ({ children }) => {
+const AdminLayout = ({ menuSelector, menuIsShow, menuShowHandler, selectMenu, children }) => {
   return (
     <Layout>
       <Header>
-        <Dropdown list={AD_ADMIN_DROPDOWN_OPTIONS} />
-        <Button text="광고 만들기" create />
+        <Dropdown
+          list={AD_ADMIN_DROPDOWN_OPTIONS}
+          menuSelector={menuSelector}
+          menuIsShow={menuIsShow}
+          menuShowHandler={menuShowHandler}
+          selectMenu={selectMenu}
+        />
+        <Button text="광고 만들기" primary />
       </Header>
       {children}
     </Layout>
