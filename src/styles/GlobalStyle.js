@@ -21,6 +21,7 @@ time, mark, audio, video {
   padding: 0;
   border: 0;
   vertical-align: baseline;
+  box-sizing: border-box;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -48,6 +49,9 @@ q:before, q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+button {
+  cursor: pointer;
 }
 `;
 
