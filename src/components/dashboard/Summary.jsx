@@ -7,8 +7,8 @@ import { dataConverter } from '../../utils/trendDataConverter';
 import SummaryItem from './SummaryItem';
 
 const Summary = () => {
-  const { startDate, _ } = useStartDate();
-  const { endedDate, __ } = useEndedDate();
+  const { startDate } = useStartDate();
+  const { endedDate } = useEndedDate();
   const [incrementData, setIncrementData] = useState({});
 
   useEffect(() => {

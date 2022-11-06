@@ -1,12 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useFirstOption, useSecondOption } from '../../context/chartOptionContext';
 import ChartFilterOption from './ChartFilterOption';
 
 const ChartFilter = () => {
+  const { firstOption, changeFirstOption } = useFirstOption();
+  const { secondOption, changeSecondOption } = useSecondOption();
   return (
     <StContainer>
-      <ChartFilterOption />
-      <ChartFilterOption />
+      <ChartFilterOption firstOption={firstOption} secondOption={secondOption} changeOption={changeFirstOption} first />
+      <ChartFilterOption firstOption={firstOption} secondOption={secondOption} changeOption={changeSecondOption} />
       <StWeeklyDailyFilter>
         <option value="주간">주간</option>
         <option value="일간">일간</option>

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Chart from './Chart';
 import ChartFilter from './ChartFilter';
 import Summary from './Summary';
 
@@ -10,7 +11,7 @@ const Dashboard = () => {
       <StDashboardContainer>
         <Summary />
         <ChartFilter />
-        <StChartContainer />
+        <Chart />
       </StDashboardContainer>
     </StContainer>
   );

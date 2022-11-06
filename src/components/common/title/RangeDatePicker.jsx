@@ -18,7 +18,7 @@ const RangeDatePicker = () => {
         onChange={(date) => changeStartDate(date)}
         selectsStart
         startDate={startDate}
-        endDate={endedDate}
+        endDate={new Date(new Date(endedDate).getTime() - 1000 * 60 * 60 * 24 * 7)}
         minDate={new Date('2022-02-01')}
         maxDate={new Date(new Date('2022-04-20').getTime() - 1000 * 60 * 60 * 24 * 6)}
         className="datePicker"

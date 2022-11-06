@@ -38,7 +38,11 @@ const StLogo = styled.img`
   height: 30px;
 `;
 
-const StMenusContainer = styled.div``;
+const StMenusContainer = styled.div`
+  a {
+    text-decoration: none;
+  }
+`;
 
 const StMenuContainer = styled.div`
   margin-top: 40px;

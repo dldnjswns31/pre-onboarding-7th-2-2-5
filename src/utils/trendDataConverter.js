@@ -1,4 +1,4 @@
-import mockData from '../assets/data/trendDataSet.json';
+import mockData from '../assets/database/trendDataSet.json';
 import { getDayDiff } from './getDayDiff';
 import { getPrevDayRange } from './getPrevDayRange';
 

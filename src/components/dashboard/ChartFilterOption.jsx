@@ -1,17 +1,49 @@
 import React from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import styled from 'styled-components';
+import { CATEGORY_COLOR, CATEGORY_NAME } from '../../data/filterCategory';
 
-const ChartFilterOption = () => {
+const ChartFilterOption = ({ first, firstOption, secondOption, changeOption }) => {
+  const [filterOption, setFilterOption] = useState('none');
+  const [options, setOptions] = useState([]);
+
+  useEffect(() => {
+    if (first) {
+      setFilterOption('roas');
+      setOptions(Object.keys(CATEGORY_NAME));
+    }
+  }, []);
+
+  useEffect(() => {
+    changeOption(filterOption);
+  }, [filterOption]);
+
+  useEffect(() => {
+    if (!first) {
+      setOptions(
+        Object.keys(CATEGORY_NAME).filter((category) => {
+          if (category !== firstOption) return category;
+        })
+      );
+    }
+  }, [firstOption]);
+
+  const handleChangeFilter = (e) => {
+    setFilterOption(e.target.value);
+  };
   return (
     <StFilterContainer>
-      <StChartColorCircle />
-      <StFilter>
-        <option value="ROAS">ROAS</option>
-        <option value="ROAS">광고비</option>
-        <option value="ROAS">노출 수</option>
-        <option value="ROAS">클릭 수</option>
-        <option value="ROAS">전환 수</option>
-        <option value="ROAS">매출</option>
+      <StChartColorCircle color={CATEGORY_COLOR[filterOption]} />
+      <StFilter onChange={handleChangeFilter}>
+        {!first && <option value="none">Filter</option>}
+        {options.map((item, idx) => {
+          return (
+            <option key={idx} value={item}>
+              {CATEGORY_NAME[item]}
+            </option>
+          );
+        })}
       </StFilter>
     </StFilterContainer>
   );
@@ -46,6 +78,6 @@ const StChartColorCircle = styled.div`
   display: inline-block;
   width: 10px;
   height: 10px;
-  background-color: #85da47;
+  background-color: ${({ color }) => color};
   border-radius: 50%;
 `;
