@@ -3,6 +3,7 @@ import { AD_STATUS } from '../utils/constants';
 import { getKeyByValue } from '../utils/functions';
 import AdItemList from '../components/admin/AdItemList';
 import AdminLayout from '../components/admin/AdminLayout';
+import Title from '../components/common/title/Title';
 import useToggle from '../hooks/useToggle';
 
 const AdAdminPage = () => {
@@ -17,14 +18,17 @@ const AdAdminPage = () => {
   };
 
   return (
-    <AdminLayout
-      menuSelector={menuSelector}
-      menuIsShow={menuIsShow}
-      menuShowHandler={menuShowHandler}
-      selectMenu={selectMenu}
-    >
-      <AdItemList filter={filter} />
-    </AdminLayout>
+    <>
+      <Title text="광고관리" />
+      <AdminLayout
+        menuSelector={menuSelector}
+        menuIsShow={menuIsShow}
+        menuShowHandler={menuShowHandler}
+        selectMenu={selectMenu}
+      >
+        <AdItemList filter={filter} />
+      </AdminLayout>
+    </>
   );
 };
 
