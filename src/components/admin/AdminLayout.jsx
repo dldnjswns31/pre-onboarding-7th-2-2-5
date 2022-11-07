@@ -7,7 +7,6 @@ import Loading from '../common/Loading';
 
 const AdminLayout = ({ menuSelector, menuIsShow, menuShowHandler, selectMenu, children }) => {
   const [isLoading, setIsLoading] = useState(true);
-  console.log(children);
 
   useEffect(() => {
     setTimeout(() => {
