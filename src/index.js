@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import AdDataContextProvider from './context/adDataContext';
 import { ChartOptionProvider } from './context/chartOptionContext';
 import { EndedDateProvider, StartDateProvider } from './context/dateContext';
 
@@ -9,7 +10,9 @@ root.render(
   <StartDateProvider>
     <EndedDateProvider>
       <ChartOptionProvider>
-        <App />
+        <AdDataContextProvider>
+          <App />
+        </AdDataContextProvider>
       </ChartOptionProvider>
     </EndedDateProvider>
   </StartDateProvider>

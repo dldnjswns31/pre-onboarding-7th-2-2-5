@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import AdvertisementCenterTab from './AdvertisementCenterTab';
+import Guide from './Guide';
 import ServiceTab from './ServiceTab';
 
 const Sidebar = () => {
@@ -17,6 +18,11 @@ const Sidebar = () => {
           <AdvertisementCenterTab />
         </StMenuContainer>
       </StMenusContainer>
+      <Guide />
+      <StDivContainer>
+        <div>레버는 함께 만들어갑니다.</div>
+        <div>이용약관</div>
+      </StDivContainer>
     </StSidebarContainer>
   );
 };
@@ -46,4 +52,15 @@ const StMenusContainer = styled.div`
 
 const StMenuContainer = styled.div`
   margin-top: 40px;
+`;
+
+const StDivContainer = styled.div`
+  margin: 40px 0;
+  padding: 0 20px;
+  div {
+    margin-bottom: 10px;
+    color: #94a2ad;
+    font-size: 12px;
+    font-weight: 500;
+  }
 `;

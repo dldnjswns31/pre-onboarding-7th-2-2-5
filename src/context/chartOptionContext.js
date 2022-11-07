@@ -8,8 +8,8 @@ export const useFirstOption = () => useContext(FirstOptionContext);
 export const useSecondOption = () => useContext(SecondOptionContext);
 
 export const ChartOptionProvider = ({ children }) => {
-  const [firstOption, setFirstOption] = useState(null);
-  const [secondOption, setSecondOption] = useState(null);
+  const [firstOption, setFirstOption] = useState('roas');
+  const [secondOption, setSecondOption] = useState('none');
 
   const changeFirstOption = (option) => {
     setFirstOption(option);

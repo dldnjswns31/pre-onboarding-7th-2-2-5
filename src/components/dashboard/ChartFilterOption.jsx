@@ -2,22 +2,19 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import styled from 'styled-components';
+import { useFirstOption, useSecondOption } from '../../context/chartOptionContext';
 import { CATEGORY_COLOR, CATEGORY_NAME } from '../../data/filterCategory';
 
-const ChartFilterOption = ({ first, firstOption, secondOption, changeOption }) => {
-  const [filterOption, setFilterOption] = useState('none');
+const ChartFilterOption = ({ first }) => {
+  const { firstOption, changeFirstOption } = useFirstOption();
+  const { secondOption, changeSecondOption } = useSecondOption();
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
     if (first) {
-      setFilterOption('roas');
       setOptions(Object.keys(CATEGORY_NAME));
     }
   }, []);
-
-  useEffect(() => {
-    changeOption(filterOption);
-  }, [filterOption]);
 
   useEffect(() => {
     if (!first) {
@@ -29,21 +26,44 @@ const ChartFilterOption = ({ first, firstOption, secondOption, changeOption }) =
     }
   }, [firstOption]);
 
+  useEffect(() => {
+    if (first) {
+      setOptions(
+        Object.keys(CATEGORY_NAME).filter((category) => {
+          if (category !== secondOption) return category;
+        })
+      );
+    }
+  }, [secondOption]);
+
   const handleChangeFilter = (e) => {
-    setFilterOption(e.target.value);
+    if (first) {
+      changeFirstOption(e.target.value);
+    } else {
+      changeSecondOption(e.target.value);
+    }
   };
   return (
     <StFilterContainer>
-      <StChartColorCircle color={CATEGORY_COLOR[filterOption]} />
-      <StFilter onChange={handleChangeFilter}>
+      <StChartColorCircle color={first ? CATEGORY_COLOR[firstOption] : CATEGORY_COLOR[secondOption]} />
+      <StFilter onChange={handleChangeFilter} value={first ? firstOption : secondOption}>
         {!first && <option value="none">Filter</option>}
-        {options.map((item, idx) => {
-          return (
-            <option key={idx} value={item}>
-              {CATEGORY_NAME[item]}
-            </option>
-          );
-        })}
+        {first &&
+          options.map((item, idx) => {
+            return (
+              <option key={idx} value={item}>
+                {CATEGORY_NAME[item]}
+              </option>
+            );
+          })}
+        {!first &&
+          options.map((item, idx) => {
+            return (
+              <option key={idx} value={item}>
+                {CATEGORY_NAME[item]}
+              </option>
+            );
+          })}
       </StFilter>
     </StFilterContainer>
   );

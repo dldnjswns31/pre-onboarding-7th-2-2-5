@@ -2,21 +2,37 @@ import styled from 'styled-components';
 import Dropdown from '../UI/Dropdown';
 import Button from '../UI/Button';
 import { AD_ADMIN_DROPDOWN_OPTIONS } from '../../utils/constants';
+import { useEffect, useState } from 'react';
+import Loading from '../common/Loading';
 
 const AdminLayout = ({ menuSelector, menuIsShow, menuShowHandler, selectMenu, children }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  console.log(children);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+  }, []);
   return (
     <Layout>
-      <Header>
-        <Dropdown
-          list={AD_ADMIN_DROPDOWN_OPTIONS}
-          menuSelector={menuSelector}
-          menuIsShow={menuIsShow}
-          menuShowHandler={menuShowHandler}
-          selectMenu={selectMenu}
-        />
-        <Button text="광고 만들기" primary />
-      </Header>
-      {children}
+      {!isLoading ? (
+        <>
+          <Header>
+            <Dropdown
+              list={AD_ADMIN_DROPDOWN_OPTIONS}
+              menuSelector={menuSelector}
+              menuIsShow={menuIsShow}
+              menuShowHandler={menuShowHandler}
+              selectMenu={selectMenu}
+            />
+            <Button text="광고 만들기" primary />
+          </Header>
+          {children}
+        </>
+      ) : (
+        <Loading />
+      )}
     </Layout>
   );
 };
@@ -24,6 +40,7 @@ const AdminLayout = ({ menuSelector, menuIsShow, menuShowHandler, selectMenu, ch
 export default AdminLayout;
 
 const Layout = styled.div`
+  margin-bottom: 40px;
   background-color: white;
   border-radius: 20px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.04);

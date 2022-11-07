@@ -1,6 +1,7 @@
 import mockData from '../assets/database/trendDataSet.json';
 import { getDayDiff } from './getDayDiff';
 import { getPrevDayRange } from './getPrevDayRange';
+import { numberToKorean } from '../utils/numberToKorean';
 
 // roas, cost(광고비), imp(노출수), click(클릭수), conv(전환수), convValue(매출)
 
@@ -25,27 +26,51 @@ const convert = (start, ended, keyword) => {
   else if (cur < prev) increment = 'decrease';
 
   return {
-    cur: Math.round(Number(cur / dataNum)),
-    diff: Math.round(Number(Math.abs(cur - prev) / dataNum)),
+    cur: Math.round(Number(cur)),
+    diff: Math.round(Number(Math.abs(cur - prev))),
     increment,
   };
 };
 
 const returnConvert = (start, ended, keyword) => {
   if (keyword === 'roas') {
-    const convertData = convert(start, ended, keyword);
+    const cost = convert(start, ended, 'cost');
+    const convValue = convert(start, ended, 'convValue');
+    const convertData = {};
+    convertData.cur = parseInt((convValue.cur / cost.cur) * 100);
+
+    let prevCost, prevConvValue;
+    if (cost.increment === 'increase') {
+      prevCost = cost.cur - cost.diff;
+    } else {
+      prevCost = cost.cur + cost.diff;
+    }
+    if (convValue.increment === 'increase') {
+      prevConvValue = convValue.cur - convValue.diff;
+    } else {
+      prevConvValue = convValue.cur + convValue.diff;
+    }
+    const prevRoas = parseInt((prevConvValue / prevCost) * 100);
+    if (convertData.cur - prevRoas > 0) convertData.increment = 'increase';
+    else convertData.increment = 'decrease';
+    convertData.diff = Math.abs(convertData.cur - prevRoas);
     convertData.cur = convertData.cur.toLocaleString('ko-KR') + '%';
     convertData.diff = convertData.diff.toLocaleString('ko-KR') + '%';
     return convertData;
-  } else if (keyword === 'cost' || keyword === 'convValue') {
-    const convertData = convert(start, ended, keyword);
-    convertData.cur = convertData.cur.toLocaleString('ko-KR') + '원';
-    convertData.diff = convertData.diff.toLocaleString('ko-KR') + '원';
-    return convertData;
-  } else if (keyword === 'imp' || keyword === 'conv' || keyword === 'click') {
+  } else if (keyword === 'conv' || keyword === 'click') {
     const convertData = convert(start, ended, keyword);
     convertData.cur = convertData.cur.toLocaleString('ko-KR') + '회';
     convertData.diff = convertData.diff.toLocaleString('ko-KR') + '회';
+    return convertData;
+  } else if (keyword === 'convValue' || keyword === 'cost') {
+    const convertData = convert(start, ended, keyword);
+    convertData.cur = numberToKorean(convertData.cur) + '원';
+    convertData.diff = numberToKorean(convertData.diff) + '원';
+    return convertData;
+  } else if (keyword === 'imp') {
+    const convertData = convert(start, ended, keyword);
+    convertData.cur = numberToKorean(convertData.cur) + '회';
+    convertData.diff = numberToKorean(convertData.diff) + '회';
     return convertData;
   } else {
     throw new Error('data convert error');

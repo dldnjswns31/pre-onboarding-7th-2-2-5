@@ -13,6 +13,7 @@ import {
 import { Line } from 'react-chartjs-2';
 import { useGetChartValues } from '../../hooks/useGetChartValues';
 import { useFirstOption, useSecondOption } from '../../context/chartOptionContext';
+import { getChartOptionProps, getDataSet } from '../../utils/getChartDataOption';
 
 const Chart = () => {
   const { firstOption } = useFirstOption();
@@ -20,70 +21,15 @@ const Chart = () => {
 
   const [labels, firstValues, firstColor] = useGetChartValues(firstOption);
   const [_, secondValues, secondColor] = useGetChartValues(secondOption);
+
+  const datasets = getDataSet(labels, firstValues, secondValues, firstColor, secondColor);
+  const options = getChartOptionProps(secondValues);
+
   ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
-  const data = {
-    labels,
-    datasets: [
-      {
-        type: 'line',
-        yAxisID: 'first',
-        borderColor: firstColor,
-        borderWidth: 2,
-        data: firstValues,
-      },
-      {
-        type: 'line',
-        yAxisID: 'second',
-        borderColor: secondColor,
-        borderWidth: 2,
-        data: secondValues,
-      },
-    ],
-  };
+
   return (
     <StContainer>
-      <Line
-        type="line"
-        data={data}
-        options={{
-          elements: {
-            point: {
-              radius: 0,
-            },
-          },
-          plugins: {
-            legend: {
-              display: false,
-            },
-          },
-          scales: {
-            xAxis: {
-              grid: {
-                display: false,
-              },
-            },
-            first: {
-              position: 'left',
-              grid: {
-                borderWidth: 0,
-              },
-              ticks: {
-                maxTicksLimit: 5,
-              },
-            },
-            second: {
-              position: 'right',
-              grid: {
-                borderWidth: 0,
-              },
-              ticks: {
-                maxTicksLimit: 5,
-              },
-            },
-          },
-          responsive: true,
-        }}
-      />
+      <Line type="line" data={datasets} options={options} />
     </StContainer>
   );
 };
