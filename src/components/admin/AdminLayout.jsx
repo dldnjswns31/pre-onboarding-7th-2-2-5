@@ -5,7 +5,7 @@ import { AD_ADMIN_DROPDOWN_OPTIONS } from '../../utils/constants';
 import { useEffect, useState } from 'react';
 import Loading from '../common/Loading';
 
-const AdminLayout = ({ menuSelector, menuIsShow, menuShowHandler, selectMenu, children }) => {
+const AdminLayout = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -13,18 +13,13 @@ const AdminLayout = ({ menuSelector, menuIsShow, menuShowHandler, selectMenu, ch
       setIsLoading(false);
     }, 500);
   }, []);
+
   return (
     <Layout>
       {!isLoading ? (
         <>
           <Header>
-            <Dropdown
-              list={AD_ADMIN_DROPDOWN_OPTIONS}
-              menuSelector={menuSelector}
-              menuIsShow={menuIsShow}
-              menuShowHandler={menuShowHandler}
-              selectMenu={selectMenu}
-            />
+            <Dropdown list={AD_ADMIN_DROPDOWN_OPTIONS} />
             <Button text="광고 만들기" primary />
           </Header>
           {children}

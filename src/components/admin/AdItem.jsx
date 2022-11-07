@@ -8,7 +8,7 @@ import { getValueByKey, budgetConverter, dateConverter, costFormat, roasCalc, ge
 import { AD_ITEM_DESC, AD_STATUS, AD_SORT } from '../../utils/constants';
 import { useAdEdit } from '../../context/adDataContext';
 
-const AdItem = ({ ad, itemId }) => {
+const AdItem = ({ ad }) => {
   const setAdData = useAdEdit();
 
   const { adType, report, title } = ad;
