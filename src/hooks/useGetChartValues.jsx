@@ -1,6 +1,6 @@
 import { useEndedDate, useStartDate } from '../context/dateContext';
 import trendDataSet from '../assets/database/trendDataSet.json';
-import { CATEGORY_COLOR } from '../data/filterCategory';
+import { CATEGORY_COLOR } from '../utils/filterCategory';
 
 export const useGetChartValues = (option) => {
   const { startDate } = useStartDate();

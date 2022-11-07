@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import styled from 'styled-components';
 import { useFirstOption, useSecondOption } from '../../context/chartOptionContext';
-import { CATEGORY_COLOR, CATEGORY_NAME } from '../../data/filterCategory';
+import { CATEGORY_COLOR, CATEGORY_NAME } from '../../utils/filterCategory';
 
 const ChartFilterOption = ({ first }) => {
   const { firstOption, changeFirstOption } = useFirstOption();
