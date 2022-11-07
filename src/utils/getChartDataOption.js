@@ -40,7 +40,7 @@ export const getChartOptionProps = (secondValues) => {
     return {
       elements: {
         point: {
-          radius: 1,
+          radius: 2,
         },
       },
       plugins: {
@@ -79,7 +79,7 @@ export const getChartOptionProps = (secondValues) => {
     return {
       elements: {
         point: {
-          radius: 1,
+          radius: 2,
         },
       },
       plugins: {
