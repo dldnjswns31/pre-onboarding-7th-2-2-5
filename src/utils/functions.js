@@ -7,10 +7,7 @@ function getKeyByValue(obj, value) {
 }
 
 const budgetConverter = (budget) => {
-  const newBudget = String(budget);
-  if (budget < 100000) return newBudget.slice(0, 2) + '천원';
-  else if (newBudget.slice(3, 4) === '0') return newBudget.slice(0, 2) + '만원';
-  else return newBudget.slice(0, 2) + '만 ' + newBudget.slice(3, 4) + '천원';
+  return budget / 10000 + '만원';
 };
 
 const dateConverter = (startDate, endDate) => {

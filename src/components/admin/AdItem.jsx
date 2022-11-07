@@ -8,7 +8,7 @@ import { getValueByKey, budgetConverter, dateConverter, costFormat, roasCalc, ge
 import { AD_ITEM_DESC, AD_STATUS, AD_SORT } from '../../utils/constants';
 import { useAdEdit } from '../../context/adDataContext';
 
-const AdItem = ({ ad, itemId }) => {
+const AdItem = ({ ad }) => {
   const setAdData = useAdEdit();
 
   const { adType, report, title } = ad;
@@ -18,15 +18,14 @@ const AdItem = ({ ad, itemId }) => {
 
   const formHandler = (e) => {
     const { name, value } = e.target;
-    if (value === 'ended')
-      setAdData((prev) =>
-        prev.map((ad) => (ad.id === parseInt(itemId) ? { ...form, [name]: value, endDate: getToday() } : ad))
-      );
-    else if (value === 'active')
-      setAdData((prev) =>
-        prev.map((ad) => (ad.id === parseInt(itemId) ? { ...form, [name]: value, endDate: null } : ad))
-      );
-    else setAdData((prev) => prev.map((ad) => (ad.id === parseInt(itemId) ? { ...form, [name]: value } : ad)));
+    if (value === 'ended') setForm({ ...form, [name]: value, endDate: getToday() });
+    else if (value === 'active') setForm({ ...form, [name]: value, endDate: null });
+    else setForm({ ...form, [name]: value });
+  };
+
+  const submitHandler = (e) => {
+    setAdData((prev) => prev.map((data) => (data.id === form.id ? form : data)));
+    editModeHandler(e);
   };
 
   return !editMode ? (
@@ -67,7 +66,7 @@ const AdItem = ({ ad, itemId }) => {
       <Desc title={AD_ITEM_DESC[3]} desc={`${roasCalc(convValue, cost)}%`} />
       <Desc title={AD_ITEM_DESC[4]} desc={costFormat(convValue)} />
       <Desc title={AD_ITEM_DESC[5]} desc={costFormat(cost)} />
-      <Button type="submit" onClick={editModeHandler} text="수정완료" primary margin="20px 8px" />
+      <Button type="submit" onClick={submitHandler} text="수정완료" primary margin="20px 8px" />
     </Card>
   );
 };

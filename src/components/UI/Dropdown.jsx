@@ -1,7 +1,21 @@
 import styled from 'styled-components';
+import useToggle from '../../hooks/useToggle';
+import { getKeyByValue } from '../../utils/functions';
+import { AD_STATUS } from '../../utils/constants';
+import { useAdFilter, useAdSelector } from '../../context/adManagementContext';
 import { BiChevronDown, BiChevronUp } from 'react-icons/bi';
 
-const Dropdown = ({ list, menuSelector, menuIsShow, menuShowHandler, selectMenu }) => {
+const Dropdown = ({ list }) => {
+  const [menuIsShow, menuShowHandler] = useToggle();
+  const { changeFilter } = useAdFilter();
+  const { selectMenu, changeSelectMenu } = useAdSelector();
+
+  const menuSelector = (e, menu) => {
+    menuShowHandler(e);
+    changeSelectMenu(menu);
+    changeFilter(getKeyByValue(AD_STATUS, menu));
+  };
+
   return (
     <Div>
       <label>{selectMenu}</label>

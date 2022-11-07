@@ -4,6 +4,7 @@ import App from './App';
 import AdDataContextProvider from './context/adDataContext';
 import { ChartOptionProvider } from './context/chartOptionContext';
 import { EndedDateProvider, StartDateProvider } from './context/dateContext';
+import { AdManagementProvider } from './context/adManagementContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -11,7 +12,9 @@ root.render(
     <EndedDateProvider>
       <ChartOptionProvider>
         <AdDataContextProvider>
-          <App />
+          <AdManagementProvider>
+            <App />
+          </AdManagementProvider>
         </AdDataContextProvider>
       </ChartOptionProvider>
     </EndedDateProvider>
